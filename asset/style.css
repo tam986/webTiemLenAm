@@ -1,0 +1,11 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+:root{
+  --primary--color:#93BEBF;
+  --second--color: #FFFFFF;
+  --price--color: #1E1E1E;
+  --hover--color: #93BEBF;
+}
