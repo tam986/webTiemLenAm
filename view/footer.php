@@ -22,7 +22,6 @@
           <ul>
             <li><a href="">LEN TRÒN</a></li>
             <li><a href="">LEN DÀI</a></li>
-            <li><a href="">DỤNG CỤ ĐAN LEN</a></li>
           </ul>
         </div>
         <div class="danhmuc-footer">
