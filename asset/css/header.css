@@ -1,0 +1,106 @@
+header{
+  .place-header{
+    display: flex;
+    width: 249px;
+    padding-bottom: 240px;
+    flex-direction: column;
+    align-items: flex-start;
+    /* user */
+    .user{
+      display: flex;
+      width: 249px;
+      height: 152px;
+      justify-content: center;
+      align-items: center;
+      .info{
+        display: flex;
+        width: 98px;
+        height: 126px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        img{
+          width: 98px;
+          height: 98px;
+          border-radius: 100px;
+        }
+      }
+    }
+    /* nav */
+    nav{
+      width: 249px;
+      height: auto;
+      object-fit: contain;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      ul{
+        width: 55px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 30px;
+        li{
+          list-style-type: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 30px;
+          box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+          border-radius: 12px;
+          a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            text-decoration: none;
+            color: var(--price--color);
+            background-color: var(--second--color);
+            border-radius: 12px;
+              &:hover{
+                background-color: var(--primary--color);
+                border: 1px solid var(--price--color);
+                color: var(--second--color);  
+              }
+            i{
+              font-size: 30px;
+            }
+          }
+        }
+      }
+    }
+    .login-logout{
+      width: 249px;
+           display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-top: 30px;
+      a{
+        width: 55px;
+        height: 55px;
+        display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            text-decoration: none;
+            color: var(--price--color);
+            background-color: var(--second--color);
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+        &:hover{
+          background-color: var(--primary--color);
+          border: 1px solid var(--price--color);
+          color: var(--second--color);  
+        }
+      i{
+        font-size: 30px;
+      }
+      }
+    }
+  }
+}
