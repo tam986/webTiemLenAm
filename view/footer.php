@@ -38,7 +38,6 @@
   <div class="endfooter">
     <h4><i>@Design by NGUYEN DO THANH TAM @2024.</i></h4>
   </div>
-
 </footer>
 </section>
 </body>
