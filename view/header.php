@@ -27,10 +27,10 @@
         </div>
         <nav>
           <ul>
-            <li><a href=""><i class="fa-solid fa-house"></i></a></li>
-            <li><a href=""><i class="fab fa-product-hunt"></i></a></li>
-            <li><a href=""><i class="fab fa-yarn"></i></a></li>
-            <li><a href="">Blogs</a></li>
+            <li><a href="index.php"><i class="fa-solid fa-house"></i></a></li>
+            <li><a href="index.php?page=showproduct"><i class="fab fa-product-hunt"></i></a></li>
+            <li><a href="index.php?page=showproduct"><i class="fab fa-yarn"></i></a></li>
+            <li><a href="index.php?page=blog">Blogs</a></li>
           </ul>
         </nav>
         <div class="login-logout">
