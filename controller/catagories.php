@@ -1,34 +1,13 @@
 <?php
-function get_categoriesID($id)
+// hàm lấy tất cả danh mục với cột parent id là null
+function get_all_categories()
 {
-  $sql = "SELECT * FROM categories where id = ?";
-
-  return pdo_query_one($sql,  $id);
+  $sql = "SELECT * FROM categories WHERE parent_id IS NULL";
+  return pdo_query($sql);
 }
-function get_categories()
+// Hàm lấy các danh mục con theo parent_id
+function get_categoriesID($parent_id)
 {
-  return pdo_query("SELECT * FROM categories order by id ASC");
-}
-
-function get_subcategories($subid)
-{
-  $sql = "
-    SELECT
-        c.id AS category_id,
-        c.namecategories ,
-        c.tagname,
-        sc.id AS subcategory_id,
-        sc.nameSub 
-    FROM
-        categories c
-    LEFT JOIN
-        sub_categories sc ON c.id = sc.categories_id
-    WHERE
-        c.id = ?
-    ORDER BY
-        c.namecategories,   
-        sc.nameSub ASC
-    ";
-
-  return pdo_query($sql, $subid);
+  $sql = "SELECT * FROM categories WHERE parent_id = 2";
+  return pdo_query($sql, $parent_id);
 }

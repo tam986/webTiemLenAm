@@ -6,7 +6,6 @@
         <div class="header">
           <div class="logo">
             <a href=""><img src="./asset/img/logo.png" alt=""></a>
-
           </div>
           <div class="textheader">
             <div class="search-container">
@@ -23,7 +22,23 @@
       </div>
       <!-- end header main -->
       <!-- content main -->
-      <!-- end categories -->
+      <!-- danh mục sản phẩm -->
+      <div class="content">
+        <div class="place-category">
+          <div class="category-box">
+            Electronics
+            <div class="subcategory-list" id="subcategories-1">
+              <!-- Subcategories will be loaded here -->
+            </div>
+          </div>
+          <div class="category-box">
+            Clothing
+            <div class="subcategory-list" id="subcategories-2">
+              <!-- Subcategories will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- start place pattern hot -->
       <div class="content">
         <div class="place-product">
