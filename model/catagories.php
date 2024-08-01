@@ -11,3 +11,8 @@ function get_categoriesID($parent_id)
   $sql = "SELECT * FROM categories WHERE parent_id = 2";
   return pdo_query($sql, $parent_id);
 }
+function get_categories_name($idcategories)
+{
+  $sql = "SELECT * FROM categories where id=?";
+  return pdo_query($sql, $idcategories);
+}

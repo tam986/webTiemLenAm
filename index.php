@@ -2,15 +2,20 @@
 ob_start();
 session_start();
 include_once "model/connect.php";
-include_once "controller/catagories.php";
-include_once "controller/product.php";
+include_once "model/catagories.php";
+include_once "model/products.php";
 
 
 pdo_get_connection();
 
 include_once 'view/header.php';
 if (!isset($_GET['page'])) {
-
+  $idcategories = isset($_GET['idcategories']) ? $_GET['idcategories'] : null;
+  $idbanner = isset($_GET['idbanner']) ? $_GET['idbanner'] : null;
+  $categories = get_categories_name($idcategories);
+  $banner = get_Banner($idbanner);
+  $categoryId = "";
+  $products = getProductsByCategory($categoryId);
   include "view/home.php";
 } else {
   switch ($_GET['page']) {
@@ -34,6 +39,18 @@ if (!isset($_GET['page'])) {
     case 'showcart':
       break;
     case 'showcartDetail':
+      break;
+    case 'login':
+      include_once "model/m_login.php";
+      header("Location: ./view/login.php");
+      break;
+    case 'logout':
+      // Hủy tất cả các biến session
+      session_unset();
+      // Hủy session
+      session_destroy();
+      // Chuyển hướng người dùng đến trang đăng nhập hoặc trang chính của trang web
+      header('Location:index.php');
       break;
     default:
 

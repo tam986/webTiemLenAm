@@ -163,12 +163,6 @@ main{
         .yarn{
           width: 600px;
           height: 493px;
-          transition: all .1s ease-in-out;
-          &:hover{
-            transform: scale(1.05);
-            animation-delay: 0.1s;
-            cursor: pointer;
-          }
           .banner-yarn{
             width: 585px;
             height: 493px;
@@ -179,11 +173,18 @@ main{
               height: 320px;
               max-width: 585px;
               max-height: 320px;
+              overflow: hidden;
               img{
                 object-fit: fill;
                 width: 100%;
                 height: 100%;
-                border-radius: 12px;
+                  border-top-left-radius: 12px;
+                  border-top-right-radius: 12px;
+                   transition: all .1s ease-in-out;
+                   overflow: hidden;
+                  &:hover{
+                    transform: scale(1.1);
+                  }
               }
             }
             .text-banner-yarn{
@@ -217,18 +218,13 @@ main{
             }
           }
         }
-      
           .pattern{
             width: 600px;
             height: 493px;
             display: flex;
             justify-content: end;
-            transition: all .1s ease-in-out;
-            &:hover{
-              transform: scale(1.05);
-              animation-delay: 0.1s;
-              cursor: pointer;
-            }
+           
+           
             .banner-pattern{
               width: 585px;
               height: 493px;
@@ -239,11 +235,17 @@ main{
                 height: 320px;
                 max-width: 585px;
                 max-height: 320px;
+                overflow: hidden;
                 img{
-                
                   width: 100%;
                   height: 100%;
-                  border-radius: 12px;
+                  border-top-left-radius: 12px;
+                  border-top-right-radius: 12px; 
+                  transition: all .1s ease-in-out;
+                  &:hover{
+                    transform: scale(1.1);
+                  }
+
                 }
               }
               .text-banner-yarn{
@@ -479,9 +481,10 @@ main{
               justify-content: center;
               align-items: center;
               gap: 4px;
+              h1,
               h2,
               h3 {
-                font-size: 20px;
+                font-size: 16px;
                 font-weight: 200;
                 text-transform: uppercase;
               }

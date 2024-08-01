@@ -21,8 +21,29 @@
       <div class="place-header">
         <div class="user">
           <div class="info">
-            <img src="./asset/img/user3.png" alt="">
-            <span>Name</span>
+            <ul>
+              <?php
+              if (isset($_SESSION['name'])) {
+                if (pathinfo($_SESSION['img'], PATHINFO_EXTENSION) !== 'jpg') {
+                  echo "<li ><img src='./asset/img/" . $_SESSION['img'] . ".png' alt='' '></li>";
+                } else {
+                  echo "<li ><img src='./asset/img/" . $_SESSION['img'] . ".jpg' alt='' '></li>";
+                }
+                echo "<li>" . $_SESSION['name'] ?? "" . "</li>";
+                echo "<li><a href='index.php?page=logout'>Logout</a></li>";
+              } else {
+                echo "
+                    <div class='login-logout'>
+                        <ul>
+                            <li><a href='index.php?page=login'>Login</a></listyle=>
+                            <li><a href='index.php?page=register'>Register</a></li>
+                        </ul>
+                    </div>
+                ";
+              }
+              ?>
+            </ul>
+
           </div>
         </div>
         <nav>
@@ -33,9 +54,6 @@
             <li><a href="index.php?page=blog">Blogs</a></li>
           </ul>
         </nav>
-        <div class="login-logout">
-          <a href=""><i class="fas fa-sign-out-alt"></i></a>
-        </div>
       </div>
     </header>
     <!-- end header -->
