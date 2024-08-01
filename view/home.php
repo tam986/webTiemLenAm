@@ -47,12 +47,12 @@
             <a href="">
               <?php
 
-              $idbanner = 61;
+              $idbanner = 74;
               $banner = get_Banner($idbanner);
               foreach ($banner as $item) {
                 echo '
                                 <div class="image-banner">
-                                    <img src="./asset/img/' . $item['img'] . '.png" alt="">
+                                    <img src="./asset/img/' . $item['image_banner'] . '.png" alt="">
                                 </div>
                                 
                                 ';
@@ -65,13 +65,15 @@
             <div class="text-banner-yarn">
               <?php
               $idcategories = 1;
-              $categories = get_categories_name($idcategories);
-              foreach ($categories as $category) {
+              $categories = get_categories_home($idcategories);
+              if ($categories) {
+                $categoryname = $categories[0]['nameCategories'];
                 echo
-                '<h2><a href="">' . $category['nameCategories'] . '</a></h2>
+                '<h2><a href="">' . $categoryname . '</a></h2>
                     
                     ';
               }
+
 
               ?>
 
@@ -83,27 +85,34 @@
 
         <div class="pattern">
           <div class="banner-pattern">
-            <?php
-            $banner = get_Banner($idbanner);
 
-            ?>
             <a href="">
-              <div class="image-banner">
-                <img src="./asset/img/banner3.png" alt="">
-              </div>
+              <?php
+
+              $idbanner = 75;
+              $banner = get_Banner($idbanner);
+              foreach ($banner as $item) {
+                echo '
+                  <div class="image-banner">
+                      <img src="./asset/img/' . $item['image_banner'] . '.png" alt="">
+                  </div>
+                  
+                  ';
+              }
+              ?>
             </a>
 
             <div class="text-banner-yarn">
               <?php
               $idcategories = 2;
-              $categories = get_categories_name($idcategories);
-              foreach ($categories as $category) {
-                echo
-                '<h2><a href="">' . $category['nameCategories'] . '</a></h2>
-                    
-                    ';
-              }
+              $category = get_categories_home($idcategories);
+              if (!empty($category)) {
+                $categoryName = $category[0]['nameCategories'];
 
+                echo '<h2><a href="#">' . $categoryName . '</a></h2>';
+              } else {
+                echo '<p>No category found with this ID.</p>';
+              }
               ?>
               <span>Đa dạng cuộn len và các dụng cụ đang chờ bạn khám phá.</span>
             </div>
@@ -163,14 +172,22 @@
         <div class="heading-place-product">
           <div class="heading">
 
-            <h1><a href="">' . $categoryname . '</a></h1>
+            <?php
+            $id = 4;
+            $products = get_product_bycategory($id);
+
+            if ($products) {
+              $categoryName =  $products[0]['category_name'];
+              echo '<h2><a href="?page=showproduct&categories=' . $id . '">' . $categoryName . '</a></h2>';
+            }
+            ?>
+
 
           </div>
           <div class="more">
-            <h1><a href="?page=showproduct&categories=<?php echo $categoryId; ?>">Xem Thêm</a></h1>
+            <h2><a href="?page=showproduct&categories=<?php echo $sttToCheck; ?>">Xem Thêm</a></h2>
           </div>
         </div>
-
         <div class="box-product-master">
           <?php
           if (!empty($products)) {
@@ -178,20 +195,27 @@
               $saleoff = $product['status_sale'];
               $imagePath = './asset/img/' . $product['image'] . '.jpg';
 
-              echo '
-            <div class="box-product">
-                ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
-                <img src="' . htmlspecialchars($imagePath) . '" alt="">
-                <div class="content-box-product">
-                    <h1 style="font-size:16px;"><strong>' . htmlspecialchars($product['product_name']) . '</strong></h1>
-                    <span>' . htmlspecialchars($product['product_title']) . '</span>
-                    <span>' . htmlspecialchars($product['price']) . '</span>
-                </div>
-                <a class="buy-now-button">Mua Ngay</a>
-            </div>
-            ';
+              if (file_exists($imagePath)) {
+                echo '
+                    <div class="box-product">
+                        ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
+                        
+                        <img src="' . htmlspecialchars($imagePath) . '" alt="">
+
+                        <div class="content-box-product">
+                            <h1 style="font-size:16px;"><strong>' . htmlspecialchars($product['name']) . '</strong></h1>
+                            <span>' . htmlspecialchars($product['title']) . '</span>
+                            <span>' . htmlspecialchars($product['price']) . '</span>
+                        </div>
+                        <a href="#" class="buy-now-button">Mua Ngay</a>
+                    </div>
+                    ';
+              }
             }
+          } else {
+            echo '<p>No products found!</p>';
           }
+
           ?>
         </div>
       </div>
@@ -202,13 +226,20 @@
       <div class="place-product">
         <div class="heading-place-product">
           <div class="heading">
+            <?php
+            $id = 1;
 
+            $products = get_product_bycategory($id);
 
-            <h1><a href="?page=showproduct&categories=">danh mục</a></h1>
+            if ($products) {
+              $categoryName =  $products[0]['category_name'];
+              echo '<h2><a href="?page=showproduct&categories=' . $id . '">' . $categoryName . '</a></h2>';
+            }
+            ?>
 
           </div>
           <div class="more">
-            <h1><a href="?page=showproduct&categories=<?php echo $categoryId; ?>">Xem Thêm</a></h1>
+            <h2><a href="?page=showproduct&categories=<?php echo $categoryId; ?>">Xem Thêm</a></h2>
           </div>
         </div>
 
@@ -219,20 +250,26 @@
               $saleoff = $product['status_sale'];
               $imagePath = './asset/img/' . $product['image'] . '.jpg';
 
-              echo '
-            <div class="box-product">
-                ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
-                <img class="flag-off-tag" src="./asset/img/' . $product['nameCountry'] . '.jpg" alt="">
-                <img src="' . htmlspecialchars($imagePath) . '" alt="">
-                <div class="content-box-product">
-                    <h1><strong>' . htmlspecialchars($product['product_name']) . '</strong></h1>
-                    <span>' . htmlspecialchars($product['product_title']) . '</span>
-                    <span>' . htmlspecialchars($product['price']) . '</span>
-                </div>
-                <a class="buy-now-button">Mua Ngay</a>
-            </div>
-            ';
+
+              if (file_exists($imagePath)) {
+                echo '
+                    <div class="box-product">
+                        ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
+                         <img class="flag-off-tag" src="./asset/img/' . $product['country_name'] . '.jpg" alt="">
+                        <img src="' . htmlspecialchars($imagePath) . '" alt="">
+
+                        <div class="content-box-product">
+                            <h1 style="font-size:16px;"><strong>' . htmlspecialchars($product['name']) . '</strong></h1>
+                            <span>' . htmlspecialchars($product['title']) . '</span>
+                            <span>' . htmlspecialchars($product['price']) . '</span>
+                        </div>
+                        <a href="#" class="buy-now-button">Mua Ngay</a>
+                    </div>
+                    ';
+              }
             }
+          } else {
+            echo '<p>No products found!</p>';
           }
           ?>
         </div>

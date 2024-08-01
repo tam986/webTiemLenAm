@@ -411,12 +411,13 @@ main{
           justify-content: space-between;
           align-items: center;
           .heading {
-            h1{
+            h2{
               a {
                 text-decoration: none;
                 font-size: 24px;
                 font-weight: 600;
                 text-transform: uppercase;
+                color: var(--price--color);
                 color: var(--price--color);
                 &:hover {
                   color: var(--primary--color);
@@ -428,7 +429,7 @@ main{
           }
 
           .more {
-            h1{
+            h2{
               a {
                 font-size: 24px;
                 font-weight: 600;

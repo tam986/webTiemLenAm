@@ -10,12 +10,12 @@ pdo_get_connection();
 
 include_once 'view/header.php';
 if (!isset($_GET['page'])) {
-  $idcategories = isset($_GET['idcategories']) ? $_GET['idcategories'] : null;
+  $idcategories = isset($_GET['id']) ? $_GET['id'] : null;
   $idbanner = isset($_GET['idbanner']) ? $_GET['idbanner'] : null;
-  $categories = get_categories_name($idcategories);
+  $categories = get_categories_home($idcategories);
   $banner = get_Banner($idbanner);
-  $categoryId = "";
-  $products = getProductsByCategory($categoryId);
+  $id = "";
+  $products = get_product_bycategory($id);
   include "view/home.php";
 } else {
   switch ($_GET['page']) {
