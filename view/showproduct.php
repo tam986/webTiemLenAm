@@ -48,11 +48,19 @@
             </div>
             <!-- end categories product -->
           </div>
-          <div class="price">
+          <!-- <div class="price">
+            <div class="placerange">
+              <p>
+                <label for="amount">Lọc theo giá: </label>
+                <input type="text" id="amount" readonly="" style="border:0; color:#f6931f; font-weight:bold;">
+              </p>
+              <div id="slider-range"></div>
+            </div>
+
             <label for="priceRange">Giá sản phẩm:</label>
             <input type="range" id="priceRange" min="0" max="1000" value="0" step="50" oninput="updatePriceDisplay(value)">
             <span id="priceDisplay">0 VND</span>
-          </div>
+          </div> -->
           <div class="rank">
             <h1>Top rate product</h1>
             <div class="productRate">
@@ -114,7 +122,6 @@
         </div>
       </section>
     </div>
-
     <!-- start footer main -->
     <div class="footer--main">
       <div class="content">
@@ -150,5 +157,7 @@
         </div>
       </div>
     </div>
+
+
   </section>
 </main>
