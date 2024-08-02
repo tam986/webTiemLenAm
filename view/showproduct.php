@@ -29,26 +29,20 @@
           <!-- start categories product -->
           <div class="categories">
             <div class="placeCategory">
-              <h1>Danh mục</h1>
+              <h1><a href="?page=showproduct&categories=">Tất cả Danh mục</a></h1>
               <nav>
                 <ul>
-                  <li>
-                    <h2><a href="">Cuộn len</a></h2>
-                  </li>
-                  <li class="id2">
-                    <h2>
-                      <a href="">
-                        Trang phục và phụ kiện được làm từ len
-                      </a>
-                    </h2>
-                    <ul id="subnav">
-                      <li><a href="index.php?page=product&categories=unisex"><i class="fa-solid fa-caret-right"></i> Unisex</a></li>
-                      <li><a href="index.php?page=product&categories=non"><i class="fa-solid fa-caret-right"></i> Nón</a></li>
-                      <li><a href="index.php?page=product&categories=aonam"><i class="fa-solid fa-caret-right"></i> Áo Nam</a></li>
-                      <li><a href="index.php?page=product&categories=aonu"><i class="fa-solid fa-caret-right"></i> Áo Nữ</a></li>
-                      <li><a href="index.php?page=product&categories=aochoang"><i class="fa-solid fa-caret-right"></i> Áo Choàng</a></li>
-                    </ul>
-                  </li>
+                  <?php
+                  if ($categories) {
+                    foreach ($categories as $dm) {
+                      echo '  <li class="categories-list">
+                          <h2><a href="?page=showproduct&categories=' . $dm['id'] . '">' . $dm['nameCategories']  . '</a></h2>
+                        </li>
+                        ';
+                    }
+                  }
+                  ?>
+
                 </ul>
               </nav>
             </div>
@@ -81,74 +75,42 @@
           <!-- product cloth -->
           <div class="content">
             <div class="place-product">
-              <div class="heading-place-product">
-                <div class="heading">
-                  <h1><a href="">Trang Phục và phụ kiện</a></h1>
-                </div>
-              </div>
               <div class="box-product-master">
-                <div class="box-product-pageProduct">
-                  <span class="sale-off-tag">Sale Off</span>
-                  <img class="flag-off-tag" src="./img/canada.jpg" alt="">
-                  <img src="./img/hat1.jpg" alt="">
-                  <div class="content-box-product">
-                    <h1><strong>Name</strong></h1>
-                    <span>Nón</span>
-                    <span>300.000 VND</span>
-                  </div>
-                  <a class="buy-now-button">Mua Ngay</a>
-                </div>
+                <?php
+                if (!empty($dssp)) {
+                  foreach ($dssp as $product) {
+                    $saleoff = $product['status_sale'];
+                    $countryname = $product['country_name'];
+                    $countryrole = $product['country_id'];
+                    $imagePath = './asset/img/' . $product['image'] . '.jpg';
+
+                    echo '
+                  <div class="box-product-pageProduct">
+                                ' . ($countryrole  ? '<img class="flag-off-tag" src="./asset/img/' . htmlspecialchars($countryname) . '.jpg" alt="">' : '') . '
+                                ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
+                                <img src="' . htmlspecialchars($imagePath) . '" alt="">
+                                <div class="content-box-product">
+                                    <h1><strong>' . htmlspecialchars($product['name']) . '</strong></h1>
+                                    <span>' . htmlspecialchars($product['title']) . '</span>
+                                    <span>' . htmlspecialchars($product['price']) . ' VND</span>
+                                </div>
+                                <a href="#" class="buy-now-button">Mua Ngay</a>
+                            </div>
+                        
+                            
+                       
+                    ';
+                  }
+                } else {
+                  echo '<p>No products found!</p>';
+                }
+                ?>
+
               </div>
             </div>
           </div>
           <!-- end cloth  -->
-          <!-- len -->
-          <div class="content">
-            <div class="place-product">
-              <div class="heading-place-product">
-                <div class="heading">
-                  <h1><a href="">Len</a></h1>
-                </div>
 
-              </div>
-              <div class="box-product-master">
-                <div class="box-product-pageProduct">
-                  <span class="sale-off-tag">Sale Off</span>
-                  <img class="flag-off-tag" src="./img/us.jpg" alt="">
-                  <img src="./img/pattern1.jpg" alt="">
-                  <div class="content-box-product">
-                    <h1><strong>Name</strong></h1>
-                    <h2>Len 2</h2>
-                    <h3>300.000 VND</h3>
-                  </div>
-                  <button class="buy-now-button">Mua Ngay</button>
-                </div>
-                <div class="box-product-pageProduct">
-                  <span class="sale-off-tag">Sale Off</span>
-                  <img class="flag-off-tag" src="./img/us.jpg" alt="">
-                  <img src="./img/pattern1.jpg" alt="">
-                  <div class="content-box-product">
-                    <h1><strong>Name</strong></h1>
-                    <h2>Len 2</h2>
-                    <h3>300.000 VND</h3>
-                  </div>
-                  <button class="buy-now-button">Mua Ngay</button>
-                </div>
-                <div class="box-product-pageProduct">
-                  <span class="sale-off-tag">Sale Off</span>
-                  <img class="flag-off-tag" src="./img/us.jpg" alt="">
-                  <img src="./img/pattern1.jpg" alt="">
-                  <div class="content-box-product">
-                    <h1><strong>Name</strong></h1>
-                    <h2>Len 2</h2>
-                    <h3>300.000 VND</h3>
-                  </div>
-                  <button class="buy-now-button">Mua Ngay</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end len -->
         </div>
       </section>
     </div>

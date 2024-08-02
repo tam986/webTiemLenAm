@@ -27,7 +27,13 @@ if (!isset($_GET['page'])) {
       break;
 
     case 'showproduct':
-
+      $categories = get_all_danhmuc();
+      if (isset($_GET['categories']) && ($_GET['categories'] > 0)) {
+        $iddm = $_GET['categories'];
+      } else {
+        $iddm = 0;
+      }
+      $dssp = showsp($iddm);
       include "view/showproduct.php";
       break;
 

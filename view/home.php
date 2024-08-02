@@ -31,7 +31,7 @@
         <div class="box-text-banner">
           <h1>Hi!</h1>
           <h1>Tiệm Len Ấm Xin Chào</h1>
-          <a href="">Mời bạn trải nghiệm tại đây </a>
+          <a href="?page=showproduct">Mời bạn trải nghiệm tại đây </a>
         </div>
 
 
@@ -69,7 +69,7 @@
               if ($categories) {
                 $categoryname = $categories[0]['nameCategories'];
                 echo
-                '<h2><a href="">' . $categoryname . '</a></h2>
+                '<h2><a href="?page=showproduct&categories=' . $idcategories . '">' . $categoryname . '</a></h2>
                     
                     ';
               }
@@ -104,12 +104,12 @@
 
             <div class="text-banner-yarn">
               <?php
-              $idcategories = 2;
+              $idcategories = 6;
               $category = get_categories_home($idcategories);
               if (!empty($category)) {
                 $categoryName = $category[0]['nameCategories'];
 
-                echo '<h2><a href="#">' . $categoryName . '</a></h2>';
+                echo '<h2><a href="?page=showproduct&categories=' . $idcategories . '">' . $categoryName . '</a></h2>';
               } else {
                 echo '<p>No category found with this ID.</p>';
               }
@@ -144,22 +144,83 @@
         </div>
         <div class="box-danhmuc">
           <div class="box-danhmuc1">
-            <img src="./asset/img/banner3.png" alt="">
-            <a href="">
-              <h1>Trang phục và Phụ kiện</h1>
-            </a>
+            <?php
+            $idbanner = 75;
+            $banner = get_Banner($idbanner);
+            foreach ($banner as $item) {
+              echo '
+       <img src="./asset/img/' . $item['image_banner'] . '.png" alt="">
+       
+       ';
+            }
+
+            $idcategories = 6;
+            $categories = get_categories_home($idcategories);
+            if ($categories) {
+              $categoryname = $categories[0]['nameCategories'];
+              echo
+              '<a href="?page=showproduct&categories=' . $idcategories . '">
+                <h1>' . $categoryname . '</h1>
+              </a>
+                     
+                     ';
+            }
+
+            ?>
+
+
           </div>
           <div class="box-danhmuc1">
-            <img src="./asset/img/banner2.png" alt="">
-            <a href="">
-              <h1>Cuộn len và Dụng cụ đan</h1>
-            </a>
+            <?php
+            $idbanner = 76;
+            $banner = get_Banner($idbanner);
+            foreach ($banner as $item) {
+              echo '
+       <img src="./asset/img/' . $item['image_banner'] . '.png" alt="">
+       
+       ';
+            }
+
+            $idcategories = 1;
+            $categories = get_categories_home($idcategories);
+            if ($categories) {
+              $categoryname = $categories[0]['nameCategories'];
+              echo
+              '<a href="?page=showproduct&categories=' . $idcategories . '">
+                <h1>' . $categoryname . '</h1>
+              </a>
+                     
+                     ';
+            }
+
+            ?>
+
           </div>
           <div class="box-danhmuc1">
-            <img src="./asset/img/product3-1.png" alt="">
-            <a href="">
-              <h1>Blogs</h1>
-            </a>
+            <?php
+            $idbanner = 74;
+            $banner = get_Banner($idbanner);
+            foreach ($banner as $item) {
+              echo '
+       <img src="./asset/img/' . $item['image_banner'] . '.png" alt="">
+       
+       ';
+            }
+
+            $idcategories = 5;
+            $categories = get_categories_home($idcategories);
+            if ($categories) {
+              $categoryname = $categories[0]['nameCategories'];
+              echo
+              '<a href="?page=showproduct&categories=' . $idcategories . '">
+                <h1>' . $categoryname . '</h1>
+              </a>
+                     
+                     ';
+            }
+
+            ?>
+
           </div>
         </div>
       </div>
@@ -185,7 +246,7 @@
 
           </div>
           <div class="more">
-            <h2><a href="?page=showproduct&categories=<?php echo $sttToCheck; ?>">Xem Thêm</a></h2>
+            <h2><a href="?page=showproduct&categories=<?php echo $id; ?>">Xem Thêm</a></h2>
           </div>
         </div>
         <div class="box-product-master">
@@ -239,7 +300,7 @@
 
           </div>
           <div class="more">
-            <h2><a href="?page=showproduct&categories=<?php echo $categoryId; ?>">Xem Thêm</a></h2>
+            <h2><a href="?page=showproduct&categories=<?php echo  $id; ?>">Xem Thêm</a></h2>
           </div>
         </div>
 
@@ -286,7 +347,7 @@
 
         <div class="box-text-banner">
           <h1>Hi!</h1>
-          <a href="">Mời Bạn Trải Nghiệm Tại Đây </a>
+          <a href="?product=showproduct">Mời Bạn Trải Nghiệm Tại Đây </a>
         </div>
 
 

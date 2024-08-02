@@ -1,6 +1,10 @@
 <?php
 
-
+function get_all_danhmuc()
+{
+  $sql = "SELECT * FROM categories order by id desc ";
+  return pdo_query($sql);
+}
 function get_categories_home($idcategories)
 {
 

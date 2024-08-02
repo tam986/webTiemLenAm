@@ -74,3 +74,15 @@ footer{
   margin-left: 40px;
   margin-right: 40px;
 }
+
+@media (max-width: 768px) {
+  .box-product-master {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .box-product-master {
+      grid-template-columns: 1fr; /* 1 column on very small screens */
+  }
+}
