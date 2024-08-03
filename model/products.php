@@ -1,5 +1,5 @@
     <?php
-
+    //  ham show san pham theo categories home
     function get_product_bycategory($cateid)
     {
         $sql = "SELECT 
@@ -48,29 +48,64 @@ WHERE
     function get_product_detail()
     {
         $sql = "SELECT 
-        pd.id,
-        pd.price,
-        pd.total,
-        pd.qty,
-        cl.id,
-        cl.name,
-        cl.description,
-        cl.code,
-        y.id,
-        y.name,
-        y.description,
-        y.code,
-        y.country,
-        c.name
+         p.nameProduct AS name, 
+        p.image, 
+        p.code AS product_code, 
+        p.description AS des, 
+        pd.price, 
+        p.title as title,
+        pd.country AS country_id, 
+        p.status_sale, 
+        c.nameCategories AS category_name,
+        co.nameCountry AS country_name
     FROM 
         product_detail pd
     LEFT JOIN 
-        cloth cl ON pd.cloth_id = cl.id
-    LEFT JOIN 
-        yarn y ON pd.yarn_id = y.id
+        products p ON pd.cloth_id = p.id
+    
     LEFT JOIN 
         country c ON pd.country_id = c.id
     WHERE 
-        pd.yarn_id = ? OR pd.cloth_id = ?;";
+        pd.product_id = ?";
         return pdo_query_one($sql);
+    }
+    // show sarn pham theo danh muc
+    // function showsp($idcat)
+    // {
+    //     $sql = "SELECT * FROM products where 1";
+    //     if ($idcat > 0) {
+    //         $sql .= " AND categories_id=" . $idcat;
+    //     }
+    //     $sql .= " ORDER BY id desc limit 8";
+    //     return pdo_query($sql);
+    // }
+    // update show san pham theo dtb product
+    function showsp($idcat)
+    {
+        $sql = "SELECT 
+                p.nameProduct AS name, 
+                p.image, 
+                p.code AS product_code, 
+                p.description AS des,
+                pd.price, 
+                p.title as title,
+                pd.country AS country_id, 
+                p.status_sale, 
+                c.nameCategories AS category_name,
+                co.nameCountry AS country_name
+        FROM 
+            products p
+        JOIN 
+            productDetail pd ON p.id = pd.product_id
+        JOIN 
+            categories c ON p.categories_id = c.id
+        LEFT JOIN 
+            country co ON pd.country = co.id";
+        if ($idcat > 0) {
+            $sql .= " WHERE c.id = ?";
+            return pdo_query($sql, $idcat);
+        }
+
+        $sql .= " ORDER BY p.id DESC LIMIT 20";
+        return pdo_query($sql);
     }

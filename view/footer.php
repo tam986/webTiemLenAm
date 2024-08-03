@@ -39,6 +39,14 @@
     <h4><i>@Design by NGUYEN DO THANH TAM @2024.</i></h4>
   </div>
 </footer>
+<script type="text/javascript">
+  document.querySelectorAll('.categories-list').forEach(item => {
+    item.addEventListener('click', function() {
+      document.querySelectorAll('.categories-list').forEach(el => el.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
 </section>
 </body>
 

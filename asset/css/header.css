@@ -36,12 +36,15 @@ header{
             font-size: 16px;
             line-height: 20px;
             font-weight: 600;
-            img{
-              width: 98px;
-              height: 98px;
-              border-radius: 100px;
-            }
-            a{
+           
+              img{
+                width: 98px;
+                height: 98px;
+                border-radius: 100px;
+              }
+          
+            
+            .iconlogout{
                 text-decoration: none;
                 display: flex;
                   justify-content: center;
@@ -57,7 +60,12 @@ header{
                       border: 1px solid var(--price--color);
                       color: var(--second--color);  
                 }
-            }
+              }
+              .imguser{
+              background-color: none;
+         
+              }
+            
           }
           
           .login-logout{
