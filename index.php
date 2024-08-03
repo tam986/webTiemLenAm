@@ -46,6 +46,9 @@ if (!isset($_GET['page'])) {
       break;
     case 'showcartDetail':
       break;
+    case 'info':
+      include "view/info.php";
+      break;
     case 'login':
       include_once "model/m_login.php";
       header("Location: ./view/login.php");

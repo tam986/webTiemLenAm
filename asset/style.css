@@ -3,6 +3,8 @@
 @import "./css/footer.css";
 @import "./css/productshow.css";
 @import "./css/dang_nhap.css";
+@import "./css/info.css";
+@import "./css/updateinfo.css";
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet');
 @font-face{
   font-family:Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;

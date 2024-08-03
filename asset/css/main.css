@@ -39,14 +39,14 @@ main{
               padding: 5px 10px;
               /* padding-right: 50px; Extra space for the button */
               font-size: 16px;
-              border: 2px solid var(--price--color);
+              box-shadow: 0 0 1px var(--price--color);
               border-radius: 25px;
               outline: none;
               transition: all 0.3s ease;
               background-color: var(--second--color);
               &:focus{
-                border-color: var(--primary--color);
-                 box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+               border: 1px solid var(--primary--color);
+                box-shadow: 0 0 1px rgba(76, 175, 80, 0.3);
               }
             }
             .search-button {

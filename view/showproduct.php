@@ -29,13 +29,13 @@
           <!-- start categories product -->
           <div class="categories">
             <div class="placeCategory">
-              <h1><a href="?page=showproduct&categories=">Tất cả Danh mục</a></h1>
+              <h1><a href="?page=showproduct&categories=">Tất cả</a></h1>
               <nav>
                 <ul>
                   <?php
                   if ($categories) {
                     foreach ($categories as $dm) {
-                      echo '  <li class="categories-list">
+                      echo '  <li class="categories-list" >
                           <h2><a href="?page=showproduct&categories=' . $dm['id'] . '">' . $dm['nameCategories']  . '</a></h2>
                         </li>
                         ';

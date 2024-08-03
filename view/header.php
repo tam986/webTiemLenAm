@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css"> -->
   <!-- end font -->
 </head>
 
@@ -26,12 +26,12 @@
               <?php
               if (isset($_SESSION['name'])) {
                 if (pathinfo($_SESSION['img'], PATHINFO_EXTENSION) !== 'jpg') {
-                  echo "<li ><img src='./asset/img/" . $_SESSION['img'] . ".png' alt='' '></li>";
+                  echo "<li ><a  class='imguser' href='index.php?page=info'><img src='./asset/img/" . $_SESSION['img'] . ".png' alt='' '></a></li>";
                 } else {
-                  echo "<li ><img src='./asset/img/" . $_SESSION['img'] . ".jpg' alt='' '></li>";
+                  echo "<li ><a class='imguser' href='index.php?page=info'><img src='./asset/img/" . $_SESSION['img'] . ".jpg' alt='' '></a></li>";
                 }
                 echo "<li>" . $_SESSION['name'] ?? "" . "</li>";
-                echo "<li><a href='index.php?page=logout'>Logout</a></li>";
+                echo "<li><a class='iconlogout' href='index.php?page=logout'>Logout</a></li>";
               } else {
                 echo "
                     <div class='login-logout'>
