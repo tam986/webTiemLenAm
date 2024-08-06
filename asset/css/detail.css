@@ -1,0 +1,22 @@
+.content{
+  .place-detail{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .right-detail{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img{
+       width:  50%;
+       height: 50%;
+      }
+    }
+    .left-detail{
+      width: 50%;
+    }
+  }
+}

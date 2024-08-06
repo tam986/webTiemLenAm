@@ -13,7 +13,6 @@ function get_categories_home($idcategories)
 
   return pdo_query($sql, $idcategories);
 
-
   // if (!empty($result)) {
 
   //   return $result[0];

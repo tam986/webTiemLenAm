@@ -1,3 +1,43 @@
 .content{
-  
+
+
+.place-user {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 20%;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.screen {
+    width: 80%;
+    padding: 20px;
+    form{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+       img{
+        width: 100px;
+        height: 100px;
+       }
+    }
+}
+
 }
