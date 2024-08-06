@@ -1,54 +1,130 @@
-<div class="col-md-9 bg-light">
-  <div class="container  ">
-    <div class="row top-info align-items-center">
-      <div class="col-md-9">
-        <h3 class=" mt-3">Hồ sơ của tôi</h3>
-        <p class="text-muted">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
-      </div>
-
-      <div class="col-md-3">
-        <a href="?mod=user&act=pass&id=<?= $user['MaKhachHang'] ?>" class="btn border"><i class="fa-solid fa-pen"></i> Thay đổi mật khẩu</a>
+<?php
+if (!isset($_SESSION['user_id'])) {
+  header("Location: index.php?page=login");
+  exit();
+}
+$user_id = $_SESSION['user_id'];
+$showinfo = user_one($user_id);
+?>
+<main class="home">
+  <section class="place-main">
+    <!-- header main -->
+    <div class="content">
+      <div class="header">
+        <div class="logo">
+          <a href="index.php"><img src="./asset/img/logo.png" alt=""></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php?page=showproduct">Sản phẩm</a></li>
+            <li><a href="index.php?page=blog">Blog</a></li>
+          </ul>
+        </nav>
+        <div class="textheader">
+          <div class="search-container">
+            <form action="index.php?page=showproduct" method="post">
+              <input type="text" name="kyw" class="search-input" placeholder="Tìm kiếm...">
+              <input class="timkiem" type="submit" name="timkiem" value="Tìm kiếm">
+            </form>
+          </div>
+          <div class="cart">
+            <a href=""><i class="fas fa-cart-plus"></i></a>
+          </div>
+          <div class="user">
+            <div class="info">
+              <ul>
+                <?php
+                if (isset($_SESSION['name']) && isset($_SESSION['user_id'])) {
+                  $user_id = $_SESSION['user_id'];
+                  $img_ext = pathinfo($_SESSION['img'], PATHINFO_EXTENSION) !== 'jpg' ? 'png' : 'jpg'; //
+                  echo "<li><a class='imguser' href='index.php?page=info&id=$user_id'><img src='./asset/img/{$_SESSION['img']}.$img_ext' alt=''></a></li>";
+                  echo "<li><a class='nameuser' href='index.php?page=info&id=$user_id'>" . $_SESSION['name'] . "</a></li>";
+                  echo "<li><a class='iconlogout' href='index.php?page=logout'>Logout</a></li>";
+                } else {
+                  echo "
+                <div class='login-logout'>
+                    <ul>
+                        <li><a href='index.php?page=login'>Login</a></li>
+                        <li>/</li>
+                        <li><a href='index.php?page=register'>Register</a></li>
+                    </ul>
+                </div>
+                ";
+                }
+                ?>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <hr>
-    <form method="post" action="" enctype="multipart/form-data" class="form p-3">
-      <div class="row d-flex justify-content-center align-items-center ">
-        <div class="col-md-5 ">
-          <div class="form-outline">
-            <label class="form-label mt-3 mb-1">Họ tên</label>
-            <input name="name" type="text" class="form-control" value="<?= $user['HoTen'] ?>" />
+    <!-- end header main -->
+    <div class="content">
+      <form method="post" action="model/m_updateinfo.php" onsubmit="return confirmUpdate()">
+        <img src="./asset/img/<?php echo $showinfo['image']; ?>.png" alt="">
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="<?php echo $showinfo['uname']; ?>" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="<?php echo $showinfo['email']; ?>" required>
+
+        <label for="address">Address:</label>
+        <input type="text" name="address" value="<?php echo $showinfo['address']; ?>" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" name="phone" value="<?php echo $showinfo['phone']; ?>" required>
+
+        <label for="image">Image:</label>
+        <input type="text" name="image" value="<?php echo $showinfo['image']; ?>" required>
+
+        <button type="submit" name="update_info">Cập nhật thông tin</button>
+      </form>
+    </div>
+    <!-- start footer main -->
+    <div class="footer--main">
+      <div class="content">
+        <div class="loiich">
+          <div class="loiich1">
+            <a href="">
+              <i class="fas fa-shipping-fast"></i>
+              <span>Giao Hàng và Đổi trả</span>
+            </a>
+
           </div>
-          <div class="form-outline">
-            <label class="form-label mt-3 mb-1">Email</label>
-            <input name="email" type="text" class="form-control" value="<?= $user['Email'] ?>" />
+          <div class="loiich2">
+            <a href="">
+              <i class="fas fa-comments"></i>
+              <span>Liên Lạc với chúng tôi</span>
+            </a>
+
           </div>
-          <!-- <div class="form-outline">
-                                                <label class="form-label mt-3 mb-1" >Mật khẩu</label>
-                                                <input name="pass" disabled type="password" class="form-control" value="<=$user['MatKhau']?> " />
-                                          </div> -->
-          <div class="form-outline">
-            <label class="form-label mt-3 mb-1">Địa chỉ</label>
-            <input name="address" type="text" class="form-control" value="<?= $user['DiaChi'] ?>" />
+          <div class="loiich3">
+            <a href="">
+              <i class="fas fa-map-marker"></i>
+              <span>Địa chỉ cửa hàng</span>
+            </a>
+
           </div>
-          <div class="form-outline">
-            <label class="form-label mt-3 mb-1">Số điện thoại</label>
-            <input name="phone" type="text" class="form-control" value="<?= $user['SDT'] ?>" />
+          <div class="loiich4">
+            <a href="">
+              <i class="fas fa-gift"></i>
+              <span>Voucher</span>
+            </a>
+
           </div>
-          <div class="form-outline">
-            <label class="form-label mt-3 mb-1">Ảnh đại diện</label>
-            <input name="image" type="file" class="form-control" />
-          </div>
-          <div class="text-center fs-1 mt-3">
-            <input name="edit_submit" type="submit" class="btn btn-success btn-lg" value="Lưu">
-          </div>
-        </div>
-        <div class="col-md-5">
-          <img src="../content/img/<?= $user['Anh'] ?>" class="img-fluid" alt="Sample image">
         </div>
       </div>
-    </form>
-  </div>
-</div>
-</div>
-</div>
-</section>
+    </div>
+    <script>
+      function confirmUpdate(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn lưu thay đổi không?");
+        if (userConfirmed) {
+          document.getElementById("updateForm").submit();
+        }
+      }
+    </script>
+  </section>
+</main>

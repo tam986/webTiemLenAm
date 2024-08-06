@@ -20,39 +20,13 @@
     <!-- header -->
     <header>
       <div class="place-header">
-        <div class="user">
-          <div class="info">
-            <ul>
-              <?php
-              if (isset($_SESSION['name'])) {
-                if (pathinfo($_SESSION['img'], PATHINFO_EXTENSION) !== 'jpg') {
-                  echo "<li ><a  class='imguser' href='index.php?page=info'><img src='./asset/img/" . $_SESSION['img'] . ".png' alt='' '></a></li>";
-                } else {
-                  echo "<li ><a class='imguser' href='index.php?page=info'><img src='./asset/img/" . $_SESSION['img'] . ".jpg' alt='' '></a></li>";
-                }
-                echo "<li>" . $_SESSION['name'] ?? "" . "</li>";
-                echo "<li><a class='iconlogout' href='index.php?page=logout'>Logout</a></li>";
-              } else {
-                echo "
-                    <div class='login-logout'>
-                        <ul>
-                            <li><a href='index.php?page=login'>Login</a></listyle=>
-                            <li><a href='index.php?page=register'>Register</a></li>
-                        </ul>
-                    </div>
-                ";
-              }
-              ?>
-            </ul>
 
-          </div>
-        </div>
         <nav>
           <ul>
             <li><a href="index.php"><i class="fa-solid fa-house"></i></a></li>
             <li><a href="index.php?page=showproduct"><i class="fab fa-product-hunt"></i></a></li>
             <li><a href="index.php?page=showproduct"><i class="fab fa-yarn"></i></a></li>
-            <li><a href="index.php?page=blog">Blogs</a></li>
+            <li><a href="index.php?page=blog"><i class="fa-brands fa-blogger"></i></a></li>
           </ul>
         </nav>
       </div>

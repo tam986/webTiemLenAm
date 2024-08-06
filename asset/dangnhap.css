@@ -24,6 +24,8 @@
     height: 400px;
     margin: auto;
     color: #fff;
+    display: flex;
+    justify-content: space-between;
     background-color: #d1cdc9;
     border-radius: 12px;
     position: absolute;
@@ -31,7 +33,12 @@
     opacity: 80%;
     backdrop-filter: blur(10px);
 }
-
+.title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
 .content .par{
     padding-left: 20px;
     padding-bottom: 25px;
@@ -63,28 +70,21 @@
     
 }
 
-.content .cn a{
-    text-decoration: none;
-    color: #000;
-    transition: .3s ease;
-}
 
-.cn:hover{
-    background-color: #fff;
-}
 
 .content span{
     color: #fff;
-    font-size: 65px
+    font-size: 65px;
+    padding-left: 20px;
+
 }
 
 .form{
     width: 250px;
     height: 380px;
-    position: absolute;
-   top: -2%;
+
     left: 870px;
-    transform: translate(0%,-5%);
+    transform: translate(0%,-4%);
     border-radius: 10px;
     padding: 25px;
     background-color: #93BEBF;

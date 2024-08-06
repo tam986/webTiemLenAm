@@ -4,19 +4,51 @@
     <div class="content">
       <div class="header">
         <div class="logo">
-
           <a href=""><img src="./asset/img/logo.png" alt=""></a>
-
         </div>
+        <nav>
+          <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php?page=showproduct">Sản phẩm</a></li>
+            <li><a href="index.php?page=blog">Blog</a></li>
+          </ul>
+        </nav>
         <div class="textheader">
           <div class="search-container">
-            <input type="text" class="search-input" placeholder="Tìm kiếm...">
-            <button class="search-button">
-              <i class="fas fa-search"></i>
-            </button>
+            <form action="index.php?page=showproduct" method="post">
+              <input type="text" name="kyw" class="search-input" placeholder="Tìm kiếm...">
+              <input class="timkiem" type="submit" name="timkiem" value="Tìm kiếm">
+            </form>
           </div>
           <div class="cart">
             <a href=""><i class="fas fa-cart-plus"></i></a>
+          </div>
+          <div class="user">
+            <div class="info">
+              <ul>
+                <?php
+                if (isset($_SESSION['name'])) {
+                  if (pathinfo($_SESSION['img'], PATHINFO_EXTENSION) !== 'jpg') {
+                    echo "<li ><a  class='imguser' href='index.php?page=info'><img src='./asset/img/" . $_SESSION['img'] . ".png' alt='' '></a></li>";
+                  } else {
+                    echo "<li ><a class='imguser' href='index.php?page=info'><img src='./asset/img/" . $_SESSION['img'] . ".jpg' alt='' '></a></li>";
+                  }
+                  echo "<li><a class='nameuser' href='index.php?page=info'>" . $_SESSION['name'] ?? "" . "</liclass=>";
+                  echo "<li><a class='iconlogout' href='index.php?page=logout'>Logout</a></li>";
+                } else {
+                  echo "
+                    <div class='login-logout'>
+                        <ul>
+                            <li><a href='index.php?page=login'>Login</a></li>
+                            <li>/</li>
+                            <li><a href='index.php?page=register'>Register</a></li>
+                        </ul>
+                    </div>
+                ";
+                }
+                ?>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -26,6 +58,12 @@
     <div class="content">
       <section class="place-showProduct">
         <div class="nav-bar">
+          <div class="search">
+            <form action="index.php?page=showproduct&categories=" method="post">
+              <input type="text" name="kyw">
+              <input type="submit" name="timmkiem" class="timkiem" value="Tìm kiếm">
+            </form>
+          </div>
           <!-- start categories product -->
           <div class="categories">
             <div class="placeCategory">
@@ -64,16 +102,29 @@
           <div class="rank">
             <h1>Top rate product</h1>
             <div class="productRate">
-              <div class="boxProductRate">
-                <div class="boxProductRate-left">
-                  <img src="./img/hat1.jpg" alt="">
-                </div>
-                <div class="boxProductRate-right">
-                  <span>Name</span>
-                  <span>Title</span>
-                  <span class="priceRate">Price</span>
-                </div>
-              </div>
+
+              <?php
+              if ($ranksp) {
+                foreach ($ranksp as $item) {
+                  echo
+                  '
+                    <div class="boxProductRate">
+                          <div class="boxProductRate-left">
+                           <a href="index.php?page=showdetail&product=' . $item['id'] . '"> <img src="./asset/img/' . $item['img'] . '.jpg" alt=""></a>
+                          </div>
+                          <div class="boxProductRate-right">
+                            <span>' . $item['name'] . '</span>
+                            <span>' . $item['title'] . '</span>
+                            <span class="priceRate">' . number_format($item['price']) . '</span>
+                          </div>
+                    </div>
+                  ';
+                }
+              }
+
+
+              ?>
+
             </div>
           </div>
         </div>
@@ -93,20 +144,25 @@
                     $imagePath = './asset/img/' . $product['image'] . '.jpg';
 
                     echo '
-                  <div class="box-product-pageProduct">
-                                ' . ($countryrole  ? '<img class="flag-off-tag" src="./asset/img/' . htmlspecialchars($countryname) . '.jpg" alt="">' : '') . '
+                            <div class="box-product-pageProduct">
+                                
                                 ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
-                                <img src="' . htmlspecialchars($imagePath) . '" alt="">
+                                <img src="' . $imagePath . '" alt="">
                                 <div class="content-box-product">
-                                    <h1><strong>' . htmlspecialchars($product['name']) . '</strong></h1>
-                                    <span>' . htmlspecialchars($product['title']) . '</span>
-                                    <span>' . htmlspecialchars($product['price']) . ' VND</span>
+                                    <h1><strong>' . $product['name'] . '</strong></h1>
+                                    <span>' . $product['title'] . '</span>
+                                    <span>' . number_format($product['price'])  . ' VND</span>
                                 </div>
-                                <a href="#" class="buy-now-button">Mua Ngay</a>
+                                <a href="?page=showdetail&product=' . $product['id'] . '" class="product-link">  
+                          <div class="overlay">
+                              <div class="button-container">
+                                  <span class="buy-now-button">Mua Ngay</span>
+                                  <span class="add-to-cart-button">Thêm Vào Giỏ Hàng</span>
+                              </div>
+                          </div>
+                        </a>
                             </div>
-                        
-                            
-                       
+                         
                     ';
                   }
                 } else {

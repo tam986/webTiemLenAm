@@ -13,7 +13,12 @@
   <div class="login">
     <img src="../asset/img/banner.png" alt="">
     <div class="content">
-      <h1>Ấm áp <br><span>Mềm Mại</span> <br>Dễ chịu</h1>
+      <div class="title">
+        <h1>Ấm áp</h1>
+        <span>Mềm Mại</span>
+        <span>Dễ chịu</span>
+      </div>
+
       <form class="form" method="POST" action="../model/m_login.php">
         <input type="text" name="name" placeholder="Gmail" required>
         <input type="password" name="pw" placeholder="Password" required>
@@ -33,11 +38,7 @@
           <a href="#"><ion-icon name="logo-google"></ion-icon></a>
         </div>
       </form>
-
-
-
     </div>
-  </div>
   </div>
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 
