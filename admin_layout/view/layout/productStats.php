@@ -6,6 +6,7 @@ $categoryStats = getProductCountByCategory();
 $orderStatusStats = getOrderCountByStatus();
 $statusStats = getOrderCountByStatus();
 $statusMap = [
+    // mảng ánh xạ các mã trạng thái đơn hàng
     0 => 'Đang chờ xử lý',
     1 => 'Đã mua',
     2 => 'Đã hủy'
