@@ -1,0 +1,151 @@
+.empty-cart-message {
+    text-align: center;
+    color: #333;
+    font-size: 1.2em;
+    padding: 20px;
+  }
+  
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .cart-table th, .cart-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  .cart-detail{
+    width: 100%;
+  }
+  .order-section{
+    width: 100%;
+  }
+  .cart-table th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+  .container{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    align-items: center;
+  }
+  .cart-table td {
+    text-align: center;
+  }
+  
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+ 
+  }
+  
+  .left-order, .right-order {
+    width: 50%;
+  }
+  .left-order, .right-order {
+    display: flex;
+    flex-direction: column;
+  }
+  .left-order span{
+    padding-top: 10px;
+  }
+  .right-order span{
+    padding-top: 10px;
+  }
+  .right-order{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+  }
+  .total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding-bottom: 10px;
+    span{
+        line-height: 24px;
+        font-size: 20px;
+    }
+  }
+  .delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.delete-button:hover {
+    background-color: #ff0000;
+}
+  .checkout-button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: var(--primary--color);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .checkout-button:hover {
+    background-color: var(--price--color);
+  }
+
+.cart-section, .order-section {
+    display: flex;
+    flex-direction: column;
+}
+.cart-section{
+    width: 75%;
+}
+.order-section{
+    width: 25%;
+}
+/* Styling for the "Xóa Tất Cả" link */
+.deleteall {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #93BEBF;
+    color: #f0f0f0;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.deleteall:hover {
+    background-color: #1E1E1E;
+    color: #f0f0f0;
+}
+
+/* Additional styling for better table display */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+    padding: 8px;
+    text-align: left;
+}
+
+.cart-table th {
+    background-color: #f4f4f4;
+}
+.btn-muahang{
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #93BEBF;
+  color: #f0f0f0;
+  text-decoration: none;
+  border-radius: 4px;
+  &:hover{
+    background-color: #1E1E1E;
+    color: #f0f0f0;
+  }
+}

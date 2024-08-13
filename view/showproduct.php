@@ -21,29 +21,28 @@
             </form>
           </div>
           <div class="cart">
-            <a href=""><i class="fas fa-cart-plus"></i></a>
+            <a href="index.php?page=cart"><i class="fas fa-cart-plus"></i></a>
           </div>
           <div class="user">
             <div class="info">
               <ul>
                 <?php
-                if (isset($_SESSION['name'])) {
-                  if (pathinfo($_SESSION['img'], PATHINFO_EXTENSION) !== 'jpg') {
-                    echo "<li ><a  class='imguser' href='index.php?page=info'><img src='./asset/img/" . $_SESSION['img'] . ".png' alt='' '></a></li>";
-                  } else {
-                    echo "<li ><a class='imguser' href='index.php?page=info'><img src='./asset/img/" . $_SESSION['img'] . ".jpg' alt='' '></a></li>";
-                  }
-                  echo "<li><a class='nameuser' href='index.php?page=info'>" . $_SESSION['name'] ?? "" . "</liclass=>";
-                  echo "<li><a class='iconlogout' href='index.php?page=logout'>Logout</a></li>";
+                // var_dump($_SESSION['user']);
+                if (isset($_SESSION['user'])) {
+                  $user_id = $_SESSION['user']['id'];
+                  $img_ext = pathinfo($_SESSION['user']['image'], PATHINFO_EXTENSION) !== 'jpg' ? 'png' : 'jpg'; //
+                  echo "<li><a class='imguser' href='index.php?page=info&id=$user_id'><img src='./asset/img/{$_SESSION['user']['image']}.$img_ext' alt=''></a></li>";
+                  echo "<li><a class='nameuser' href='index.php?page=info&id=$user_id'>" . $_SESSION['user']['uname'] . "</a></li>";
+                  echo "<li><a class='iconlogout' href='index.php?page=logout'>logout</a></li>";
                 } else {
                   echo "
-                    <div class='login-logout'>
-                        <ul>
-                            <li><a href='index.php?page=login'>Login</a></li>
-                            <li>/</li>
-                            <li><a href='index.php?page=register'>Register</a></li>
-                        </ul>
-                    </div>
+                <div class='login-logout'>
+                    <ul>
+                        <li><a href='index.php?page=login'>Login</a></li>
+                        <li>/</li>
+                        <li><a href='index.php?page=register'>Register</a></li>
+                    </ul>
+                </div>
                 ";
                 }
                 ?>
@@ -129,9 +128,8 @@
           </div>
         </div>
         <!-- end categories -->
-        <!-- start place pattern hot -->
+        <!-- start product hot -->
         <div class="product-show">
-          <!-- product cloth -->
           <div class="content">
             <div class="place-product">
               <div class="box-product-master">
@@ -139,41 +137,43 @@
                 if (!empty($dssp)) {
                   foreach ($dssp as $product) {
                     $saleoff = $product['status_sale'];
-                    $countryname = $product['country_name'];
-                    $countryrole = $product['country_id'];
                     $imagePath = './asset/img/' . $product['image'] . '.jpg';
+                    $img = $product['image'];
+                    $name = $product['name'];
+                    $productid = $product['id'];
+                    $price = $product['price'];
+
 
                     echo '
-                            <div class="box-product-pageProduct">
-                                
-                                ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
-                                <img src="' . $imagePath . '" alt="">
-                                <div class="content-box-product">
-                                    <h1><strong>' . $product['name'] . '</strong></h1>
-                                    <span>' . $product['title'] . '</span>
-                                    <span>' . number_format($product['price'])  . ' VND</span>
-                                </div>
-                                <a href="?page=showdetail&product=' . $product['id'] . '" class="product-link">  
-                          <div class="overlay">
-                              <div class="button-container">
-                                  <span class="buy-now-button">Mua Ngay</span>
-                                  <span class="add-to-cart-button">Thêm Vào Giỏ Hàng</span>
-                              </div>
-                          </div>
-                        </a>
+                        <div class="box-product-pageProduct" onclick="handleProductClick(' . $product['id'] . ')">
+                            ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
+                            <img src="' . $imagePath . '" alt="">
+                            <div class="content-box-product">
+                                <h1><strong>' . $product['name'] . '</strong></h1>
+                                <span>' . $product['title'] . '</span>
+                                <span>' . number_format($product['price'])  . ' VND</span>
                             </div>
-                         
+                          <form method="post" class="button-container" action="index.php?page=addcart">
+                            <input type="hidden" name="id" value="' . $productid . '" >
+                            <input type="hidden" name="name" value="' .  $name . '" >
+                            <input type="hidden" name="image" value="' .  $product['image'] . '" >
+                            <input type="hidden" name="price" value="' . $product['price'] . '" >
+                            <input type="hidden" name="soluong" value="1" >
+                            <button type="submit" class="buy-now-button" name="btncart">Đặt Hàng</button>
+                            <button type="submit" name="btncart" class="add-to-cart-button" onclick="event.stopPropagation(); addToCart(' . $productid . ');">Thêm Vào Giỏ Hàng</button>
+                          </form>
+                        </div>
                     ';
                   }
                 } else {
                   echo '<p>No products found!</p>';
                 }
                 ?>
-
               </div>
             </div>
           </div>
-          <!-- end cloth  -->
+
+          <!-- end products  -->
 
         </div>
       </section>
@@ -213,7 +213,6 @@
         </div>
       </div>
     </div>
-
 
   </section>
 </main>

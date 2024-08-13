@@ -1,0 +1,53 @@
+.content{
+  .dangky{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    form{
+      background-color: var(--primary--color);
+      display: flex;
+      flex-direction: column;
+      border-radius: 4px;
+      justify-content: space-between;
+      gap: 10px;
+      width: 300px;
+      height: auto;
+      padding: 15px;
+      .error-message {
+        color: red;
+        font-size: 0.875em;
+      }
+      .head-dangky{
+        text-align: center;
+      }
+      input{
+        padding: 5px 20px;
+        border-radius: 4px;
+        border:none;
+        outline: none;
+
+      }
+      button{
+        padding: 5px;
+        border:none;
+        outline: none;
+        border-radius: 4px;
+        &:hover{
+          background-color: var(--price--color);
+          color: var(--second--color);
+          cursor: pointer;
+        }
+      }
+      .link{
+        width: 100%;
+        display: flex;
+        gap: 5px;
+      }
+      
+    }
+    
+    
+  }
+}

@@ -1,9 +1,9 @@
 <?php
-if (!isset($_SESSION['user_id'])) {
+if (!$_SESSION['user']['id']) {
   header("Location: index.php?page=login");
   exit();
 }
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user']['id'];
 $showinfo = user_one($user_id);
 ?>
 <main class="home">
@@ -29,18 +29,19 @@ $showinfo = user_one($user_id);
             </form>
           </div>
           <div class="cart">
-            <a href=""><i class="fas fa-cart-plus"></i></a>
+            <a href="index.php?page=cart"><i class="fas fa-cart-plus"></i></a>
           </div>
           <div class="user">
             <div class="info">
               <ul>
                 <?php
-                if (isset($_SESSION['name']) && isset($_SESSION['user_id'])) {
-                  $user_id = $_SESSION['user_id'];
-                  $img_ext = pathinfo($_SESSION['img'], PATHINFO_EXTENSION) !== 'jpg' ? 'png' : 'jpg'; //
-                  echo "<li><a class='imguser' href='index.php?page=info&id=$user_id'><img src='./asset/img/{$_SESSION['img']}.$img_ext' alt=''></a></li>";
-                  echo "<li><a class='nameuser' href='index.php?page=info&id=$user_id'>" . $_SESSION['name'] . "</a></li>";
-                  echo "<li><a class='iconlogout' href='index.php?page=logout'>Logout</a></li>";
+
+                if (isset($_SESSION['user'])) {
+                  $user_id = $_SESSION['user']['id'];
+                  $img_ext = pathinfo($_SESSION['user']['image'], PATHINFO_EXTENSION) !== 'jpg' ? 'png' : 'jpg'; //
+                  echo "<li><a class='imguser' href='index.php?page=info&id=$user_id'><img src='./asset/img/{$_SESSION['user']['image']}.$img_ext' alt=''></a></li>";
+                  echo "<li><a class='nameuser' href='index.php?page=info&id=$user_id'>" . $_SESSION['user']['uname'] . "</a></li>";
+                  echo "<li><a class='iconlogout' href='index.php?page=logout'>logout</a></li>";
                 } else {
                   echo "
                 <div class='login-logout'>
@@ -61,26 +62,30 @@ $showinfo = user_one($user_id);
     </div>
     <!-- end header main -->
     <div class="content">
-      <form method="post" action="model/m_updateinfo.php" onsubmit="return confirmUpdate()">
-        <img src="./asset/img/<?php echo $showinfo['image']; ?>.png" alt="">
+      <div class="place-updateinfo">
+        <h1>Cập nhật thông tin</h1>
+        <form method="post" action="index.php?page=updateinfo" class="updateinfo" onsubmit="return confirmUpdate()">
+          <img src="./asset/img/<?php echo $showinfo['image']; ?>.png" alt="">
 
-        <label for="name">Name:</label>
-        <input type="text" name="name" value="<?php echo $showinfo['uname']; ?>" required>
+          <label for="name">Name:</label>
+          <label type="text" name="name"><?php echo $showinfo['uname']; ?></label>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="<?php echo $showinfo['email']; ?>" required>
+          <label for="email">Email:</label>
+          <input type="email" name="email" value="<?php echo $showinfo['email']; ?>" required>
 
-        <label for="address">Address:</label>
-        <input type="text" name="address" value="<?php echo $showinfo['address']; ?>" required>
+          <label for="address">Address:</label>
+          <input type="text" name="address" value="<?php echo $showinfo['address']; ?>" required>
 
-        <label for="phone">Phone:</label>
-        <input type="text" name="phone" value="<?php echo $showinfo['phone']; ?>" required>
+          <label for="phone">Phone:</label>
+          <input type="text" name="phone" value="<?php echo $showinfo['phone']; ?>" required>
 
-        <label for="image">Image:</label>
-        <input type="text" name="image" value="<?php echo $showinfo['image']; ?>" required>
+          <label for="image">Image:</label>
+          <input type="file" name="image" value="<?php echo $showinfo['image']; ?>" required>
 
-        <button type="submit" name="update_info">Cập nhật thông tin</button>
-      </form>
+          <button type="submit" name="update_info">Cập nhật thông tin</button>
+        </form>
+      </div>
+
     </div>
     <!-- start footer main -->
     <div class="footer--main">

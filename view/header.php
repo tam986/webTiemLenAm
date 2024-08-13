@@ -7,11 +7,12 @@
   <title>Document</title>
   <link rel="stylesheet" href="./asset/style.css">
   <script src="https://kit.fontawesome.com/b7874c4c11.js" crossorigin="anonymous"></script>
+  <script src="./asset/script.js"></script>
   <!-- font family -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css"> -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- end font -->
 </head>
 

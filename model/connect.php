@@ -5,7 +5,7 @@
  */
 function pdo_get_connection()
 {  // function kết nối
-  $dburl = "mysql:host=localhost;dbname=webtiemlenam;charset=utf8";
+  $dburl = "mysql:host=localhost;dbname=duan1;charset=utf8";
   $username = 'root';
   $password = '';
 
@@ -33,6 +33,20 @@ function pdo_execute($sql)
   }
 }
 
+function pdo_execute_returnID($sql)
+{   // function thực thi
+  $sql_args = array_slice(func_get_args(), 1);
+  try {
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($sql_args);
+    return $conn->lastInsertId();
+  } catch (PDOException $e) {
+    throw $e;
+  } finally {
+    unset($conn);
+  }
+}
 // /* ====================thay đổi mật khẩu==================== */
 // function pdo_executed($sql, $args = array()) {
 //     try {

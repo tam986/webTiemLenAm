@@ -1,0 +1,26 @@
+.content{
+  .dangnhap{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form-login{
+      background-color: var(--primary--color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 300px;
+      height: auto;
+      padding: 15px;
+      span{
+        text-align: start;
+      }
+    }
+    .error-message {
+      color: red;
+      font-size: 0.875em;
+    }
+    
+  }
+}

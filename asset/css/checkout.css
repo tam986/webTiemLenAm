@@ -1,0 +1,82 @@
+/* General container for checkout sections */
+.place-checkout {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left-checkout {
+  width: 100%;
+  padding: 20px;
+}
+
+.right-checkout {
+  /* width: 40%; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.infouser{
+  padding-top: 10px;
+  display: flex;
+}
+/* Styling for input fields */
+.infouser input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Styling for the order section */
+.right-checkout h1 {
+  margin-bottom: 20px;
+}
+
+.order-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.order-item img {
+  width: 80px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.order-item span {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-weight: bold;
+  width: 100%;
+}
+
+/* Styling for the checkout button */
+.checkout-button {
+  background-color: #93BEBF;
+  color: #f0f0f0;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.checkout-button:hover {
+  background-color: #1E1E1E;
+  color: #f0f0f0;
+}

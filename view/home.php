@@ -22,18 +22,19 @@
             </form>
           </div>
           <div class="cart">
-            <a href=""><i class="fas fa-cart-plus"></i></a>
+            <a href="index.php?page=cart"><i class="fas fa-cart-plus"></i></a>
           </div>
           <div class="user">
             <div class="info">
               <ul>
                 <?php
-                if (isset($_SESSION['name']) && isset($_SESSION['user_id'])) {
-                  $user_id = $_SESSION['user_id'];
-                  $img_ext = pathinfo($_SESSION['img'], PATHINFO_EXTENSION) !== 'jpg' ? 'png' : 'jpg'; //
-                  echo "<li><a class='imguser' href='index.php?page=info&id=$user_id'><img src='./asset/img/{$_SESSION['img']}.$img_ext' alt=''></a></li>";
-                  echo "<li><a class='nameuser' href='index.php?page=info&id=$user_id'>" . $_SESSION['name'] . "</a></li>";
-                  echo "<li><a class='iconlogout' href='index.php?page=logout'>Logout</a></li>";
+                // var_dump($_SESSION['user']);
+                if (isset($_SESSION['user'])) {
+                  $user_id = $_SESSION['user']['id'];
+                  $img_ext = pathinfo($_SESSION['user']['image'], PATHINFO_EXTENSION) !== 'jpg' ? 'png' : 'jpg'; //
+                  echo "<li><a class='imguser' href='index.php?page=info&id=$user_id'><img src='./asset/img/{$_SESSION['user']['image']}.$img_ext' alt=''></a></li>";
+                  echo "<li><a class='nameuser' href='index.php?page=info&id=$user_id'>" . $_SESSION['user']['uname'] . "</a></li>";
+                  echo "<li><a class='iconlogout' href='index.php?page=logout'>logout</a></li>";
                 } else {
                   echo "
                 <div class='login-logout'>
@@ -110,8 +111,6 @@
             </div>
           </div>
         </div>
-
-
         <div class="pattern">
           <div class="banner-pattern">
 
@@ -147,8 +146,6 @@
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
     <!-- end danh mục tổng -->
@@ -159,9 +156,7 @@
         <h1>Voucher đầy kho</h1>
         <a href="">Len ngay!</a>
       </div>
-
     </div>
-
     <!-- end banner 3 -->
     <!-- catagories -->
     <div class="content">
@@ -259,18 +254,15 @@
       <div class="place-product">
         <div class="heading-place-product">
           <div class="heading">
-
             <?php
             $id = 4;
             $products = get_product_bycategory($id);
 
             if ($products) {
-              $categoryName =  $products[0]['category_name'];
+              $categoryName = $products[0]['category_name'];
               echo '<h2><a href="?page=showproduct&categories=' . $id . '">' . $categoryName . '</a></h2>';
             }
             ?>
-
-
           </div>
           <div class="more">
             <h2><a href="?page=showproduct&categories=<?php echo $id; ?>">Xem Thêm</a></h2>
@@ -282,35 +274,36 @@
             foreach ($products as $product) {
               $saleoff = $product['status_sale'];
               $imagePath = './asset/img/' . $product['image'] . '.jpg';
+              $img = $product['image'];
+              $name = $product['name'];
+              $productid = $product['id'];
+              $price = $product['price'];
 
               if (file_exists($imagePath)) {
                 echo '
-
-                    <div class="box-product">
-                        ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '         
-                        <img src="' . $imagePath . '" alt="">
-                        <div class="content-box-product">
-                            <h1 ><strong>' . $product['name'] . '</strong></h1>
-                            <span>' . $product['title'] . '</span>
-                            <span>' . number_format($product['price']) . 'VND</span>
-                        </div>
-                        <a href="?page=showdetail&product=' . $product['id'] . '" class="product-link">  
-                          <div class="overlay">
-                              <div class="button-container">
-                                  <span class="buy-now-button">Mua Ngay</span>
-                                  <span class="add-to-cart-button">Thêm Vào Giỏ Hàng</span>
-                              </div>
-                          </div>
-                        </a>
-                    </div>
-
-                ';
+            <div class="box-product" onclick="handleProductClick(' . $product['id'] . ')">
+              ' . ($saleoff == 1 ? '<span class="sale-off-tag">Sale Off</span>' : '') . '
+              <img src="' . $imagePath . '" alt="">
+              <div class="content-box-product">
+                <h1><strong>' . $product['name'] . '</strong></h1>
+                <span>' . $product['title'] . '</span>
+                <span>' . number_format($product['price']) . 'VND</span>
+              </div>
+              <form method="post" class="button-container" action="index.php?page=addcart">
+                <input type="hidden" name="id" value="' . $productid . '" >
+                <input type="hidden" name="name" value="' .  $name . '" >
+                <input type="hidden" name="image" value="' .  $product['image'] . '" >
+                <input type="hidden" name="price" value="' . $product['price'] . '" >
+                <input type="hidden" name="soluong" value="1" >
+                <button type="submit" class="buy-now-button" name="btncart">Đặt Hàng</button>
+                <button type="submit" name="btncart" class="add-to-cart-button" onclick="event.stopPropagation(); addToCart(' . $productid . ');">Thêm Vào Giỏ Hàng</button>
+              </form>
+            </div>';
               }
             }
           } else {
             echo '<p>No products found!</p>';
           }
-
           ?>
         </div>
       </div>
@@ -341,7 +334,6 @@
             foreach ($products as $product) {
               $saleoff = $product['status_sale'];
               $imagePath = './asset/img/' . $product['image'] . '.jpg';
-
 
               if (file_exists($imagePath)) {
                 echo '
@@ -378,17 +370,16 @@
     </div>
     <!-- end len hot -->
     <!-- start banner 3 -->
-    <div class="content">
-      <div class="box-banner3">
-        <img src="./asset/img/banner4.png" alt="">
-        <div class="box-text-banner">
-          <h1>Hi!</h1>
-          <a href="?page=showproduct">Mua ngay</a>
-        </div>
-
-
+    <div class="box-banner3">
+      <img src="./asset/img/banner4.png" alt="">
+      <div class="box-text-banner">
+        <h1>Hi!</h1>
+        <a href="?page=showproduct">Mua ngay</a>
       </div>
+
+
     </div>
+
     <!-- end banner 3 -->
     <div class="footer--main">
       <div class="content">

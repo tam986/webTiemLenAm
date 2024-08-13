@@ -41,32 +41,44 @@
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="admin.php" class="simple-text">
+                    <a href="admin.php?page=productStats" class="simple-text">
                         ADMIN
                     </a>
                 </div>
 
                 <ul class="nav">
                     <li>
-                        <a href="?page=categories">
+                        <a href="admin.php?page=categories">
                             <i class="pe-7s-graph"></i>
                             <p>Danh mục</p>
                         </a>
                     </li>
                     <li>
-                        <a href="?page=product">
+                        <a href="admin.php?page=countries">
+                            <i class="pe-7s-flag"></i>
+                            <p>Quốc gia</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin.php?page=productcategories">
                             <i class="pe-7s-note2"></i>
-                            <p>Sản phẩm</p>
+                            <p>Sản phẩm</p>  
                         </a>
                     </li>
                     <li>
-                        <a href="?page=user">
+                        <a href="admin.php?page=blogList">
+                            <i class="pe-7s-pen"></i>
+                            <p>Blog</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin.php?page=users">
                             <i class="pe-7s-user"></i>
-                            <p>Người dùng</p>
+                            <p>User</p>
                         </a>
                     </li>
                     <li>
-                        <a href="?page=categories">
+                        <a href="?page=ordercategories">
                             <i class="pe-7s-news-paper"></i>
                             <p>Đơn hàng</p>
                         </a>

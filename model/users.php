@@ -5,12 +5,19 @@ function user_one($id)
   return pdo_query_one($sql, $id);
 }
 
-function user_register($name, $email, $pass, $phone, $address, $image)
+function user_register($name, $email, $pass, $phone, $address, $image, $uname)
 {
-  $sql = "INSERT INTO user(name,email,pass,phone,address,img) 
-        VALUES(?,?,?,?,?,?)";
-  return pdo_execute($sql, $name, $email, $pass, $phone, $address, $image);
+  $sql = "INSERT INTO user (uname, email, pass, phone, address, image, fullname) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+  return pdo_execute($sql, $uname, $email, $pass, $phone, $address, $image, $name);
 }
+function insert_user_returnID($name, $email, $pass, $phone, $address, $image, $fullname)
+{
+  $sql = "INSERT INTO user (uname, email, pass, phone, address, image, fullname) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+  return pdo_execute_returnID($sql, $name, $email, $pass, $phone, $address, $image, $fullname);
+}
+
 
 function user_edit($id, $name, $email, $address, $phone, $image)
 {
@@ -37,4 +44,9 @@ function upload($file)
     }
   }
   return false;
+}
+function login_role($username, $password)
+{
+  $sql = "SELECT * FROM user WHERE uname = ? AND pass = ?";
+  return pdo_query($sql, $username, $password);
 }
