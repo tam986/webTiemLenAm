@@ -1,6 +1,6 @@
 <!-- connect.php -->
 <?php
-$dsn = 'mysql:host=localhost;dbname=duan1';
+$dsn = 'mysql:host=localhost;dbname=webtiemlenam';
 $username = 'root';
 $password = '';
 
